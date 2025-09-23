@@ -4,14 +4,12 @@ export default function Page() {
   return (
     <section>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        Hi, I'm Eli, a technical trainer
+        
       </h1>
       <p className="mb-4">
-        {` with experience in IT support, freelancing, and coding. I specialize in 
+        {` Hi I'm Eli, a technical trainer with experience in IT support, freelancing, and coding. I specialize in 
           breaking down complex technical concepts into clear, actionable lessons, 
-          empowering learners to excel in their tech journeys. I bring practical, 
-          real-world insights to my training sessions inspiring and equiping individuals
-          with the skills they need to succeed in the ever-evolving world of technology..`}
+          empowering learners to excel in their tech journeys..`}
       </p>
 
       <p className="mb-4">
