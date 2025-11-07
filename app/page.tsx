@@ -6,7 +6,7 @@ export default function Page() {
       <div className="flex items-center mb-8">
         <img 
           src="images/profile-picture.png" 
-          alt="Eli's Profile" 
+          alt="Eli's Profile picture" 
           className="w-20 h-20 rounded-full mr-4 object-cover" 
         />
         <h1 className="text-2xl font-semibold tracking-tighter">
