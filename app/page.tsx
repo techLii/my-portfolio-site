@@ -10,32 +10,54 @@ export default function Page() {
           className="w-20 h-20 rounded-full mr-4 object-cover" 
         />
         <h1 className="text-2xl font-semibold tracking-tighter">
-          Eliakim Nyawinda
+          Technical Trainer | Web Dev
         </h1>
       </div>
       <p className="mb-4">
-        {`Hi I'm Eli, a technical trainer based in Eldoret, Kenya.`}
-      </p>
+  Hi I'm Eli, a technical trainer by day, web developer by night. I teach humans to talk to machines. Want in?  
+  <a 
+    href="mailto:eleeakim@gmail.com.com" 
+    className="text-blue-500 hover:underline ml-1"
+  >
+    Email me here 🚀
+  </a>
+</p>
+      
+      <div className="my-10">
+  <h2 className="text-2xl font-semibold mb-6 text-center">Web Design Projects</h2>
+  <div className="grid gap-6 md:grid-cols-2">
+    {[
+      {
+        name: "Scride Consulting Agency",
+        link: "https://www.scrideconsulting.agency",
+        img: "/images/scride-logo.png",
+        desc: "Scride helps organizations improve their operations through strategic analysis, program management, and sustainability consulting.",
+      },
+      {
+        name: "Thrive From Thorns Kenya",
+        link: "https://www.thrivefromthorns.org",
+        img: "/images/tft-logo.png",
+        desc: "A nonprofit tackling root causes of poverty and trauma to help communities in Kenya thrive.",
+      },
+    ].map(({ name, link, img, desc }) => (
+      <a
+        key={name}
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block border rounded-2xl p-5 hover:shadow-md transition-shadow duration-300"
+      >
+        {img && <img src={img} alt={name} className="w-full rounded-lg mb-3" />}
+        <h3 className="text-lg font-semibold mb-2">{name}</h3>
+        <p className="text-sm text-gray-600">{desc}</p>
+      </a>
+    ))}
+  </div>
+</div>
+
       
       <div className="my-8">
-        <h2 className="text-xl font-semibold mb-4">Check out some of my work</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="border rounded p-4">
-            <h3 className="text-lg font-medium mb-2"> <a href="https://www.scrideconsulting.agency" target="_blank" rel="noopener noreferrer">
-              Scride Consulting Agency</a></h3>
-            <img src="/images/scride-logo.png" alt="Scride Consulting" className="w-full h-auto mb-2 rounded" />
-            <p className="text-sm"><a href="https://www.scrideconsulting.agency" target="_blank" rel="noopener noreferrer">Scride helps organizations improve their operations through strategic analysis, program management, and sustainability consulting.</a></p>
-          </div>
-          <div className="border rounded p-4">
-            <h3 className="text-lg font-medium mb-2"> <a href="https://www.thrivefromthorns.org" target="_blank" rel="noopener noreferrer">
-              Thrive From Thorns Kenya</a></h3>
-            <img src="/images/tft-logo.png" alt="Thrive From Thorns" className="w-full h-auto mb-2 rounded" />
-            <p className="text-sm"><a href="https://www.thrivefromthorns.org" target="_blank" rel="noopener noreferrer">A nonprofit tackling root causes of poverty and trauma to help communities in Kenya thrive.</a></p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="my-8">
+        <h2 className="text-2xl font-semibold mb-6 text-center">Recent blog Posts</h2>
         <BlogPosts />
       </div>
     </section>
