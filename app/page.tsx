@@ -35,7 +35,7 @@ export default function Page() {
       },
       {
         name: "Thrive From Thorns Kenya",
-        link: "https://www.thrivefromthorns.org",
+        link: "https://thrive-from-thorns-tft.vercel.app/",
         img: "/images/tft-logo.png",
         desc: "A nonprofit tackling root causes of poverty and trauma to help communities in Kenya thrive.",
       },
