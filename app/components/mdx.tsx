@@ -4,7 +4,14 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
 
-function Table({ data }) {
+// 1. Define the shape of the Table data
+interface TableData {
+  headers: string[]
+  rows: string[][]
+}
+
+// 2. Add the type annotation to the component
+function Table({ data }: { data: TableData }) {
   let headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ))
@@ -26,7 +33,8 @@ function Table({ data }) {
   )
 }
 
-function CustomLink(props) {
+// 3. Type the Link props (using 'any' for the spread props is safe here)
+function CustomLink(props: any) {
   let href = props.href
 
   if (href.startsWith('/')) {
@@ -44,16 +52,19 @@ function CustomLink(props) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function RoundedImage(props) {
+// 4. Type the Image props
+function RoundedImage(props: any) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />
 }
 
-function Code({ children, ...props }) {
+// 5. Type the Code props (children must be a string for 'sugar-high')
+function Code({ children, ...props }: { children: string; [key: string]: any }) {
   let codeHTML = highlight(children)
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
-function slugify(str) {
+// 6. Type the string input
+function slugify(str: string | any) {
   return str
     .toString()
     .toLowerCase()
@@ -64,8 +75,8 @@ function slugify(str) {
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
+function createHeading(level: number) {
+  const Heading = ({ children }: { children: any }) => {
     let slug = slugify(children)
     return React.createElement(
       `h${level}`,
@@ -99,7 +110,8 @@ let components = {
   Table,
 }
 
-export function CustomMDX(props) {
+// 7. Type the MDX props
+export function CustomMDX(props: any) {
   return (
     <MDXRemote
       {...props}
