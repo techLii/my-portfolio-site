@@ -1,29 +1,39 @@
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
 
-export async function generateStaticParams() {
-  let posts = getBlogPosts()
+// Generate static params for static generation
+export function generateStaticParams() {
+  const posts = getBlogPosts()
 
   return posts.map((post) => ({
     slug: post.slug,
   }))
 }
 
-export function generateMetadata({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+// Shared props type (used by both generateMetadata and the page component)
+type Props = {
+  params: { slug: string }
+}
+
+// Generate metadata (SEO + OG tags)
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = getBlogPosts().find((post) => post.slug === params.slug)
+
   if (!post) {
-    return
+    return { title: 'Post Not Found' }
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
   } = post.metadata
-  let ogImage = image
+
+  const ogImage = image
     ? image
     : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
@@ -35,12 +45,8 @@ export function generateMetadata({ params }) {
       description,
       type: 'article',
       publishedTime,
-      url: `${baseUrl}/blog/${post.slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+      url: `${baseUrl}/blog/${params.slug}`,
+      images: [{ url: ogImage }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -51,8 +57,9 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug)
+// The actual page component (note: it returns JSX, not Metadata!)
+export default function BlogPost({ params }: Props) {
+  const post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
     notFound()
@@ -73,7 +80,7 @@ export default function Blog({ params }) {
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+              : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               '@type': 'Person',
@@ -82,15 +89,18 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
+
+      <h1 className="title font-semibold text-2xl tracking-tighter max-w-[650px]">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+
+      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose">
+
+      <article className="prose prose-neutral dark:prose-invert max-w-[650px]">
         <CustomMDX source={post.content} />
       </article>
     </section>
