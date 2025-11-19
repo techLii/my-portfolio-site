@@ -13,14 +13,16 @@ export function generateStaticParams() {
   }))
 }
 
-// Shared props type (used by both generateMetadata and the page component)
+// UPDATE 1: Define params as a Promise for Next.js 15
 type Props = {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 // Generate metadata (SEO + OG tags)
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = getBlogPosts().find((post) => post.slug === params.slug)
+  // UPDATE 2: Await the params
+  const { slug } = await params
+  const post = getBlogPosts().find((post) => post.slug === slug)
 
   if (!post) {
     return { title: 'Post Not Found' }
@@ -45,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       type: 'article',
       publishedTime,
-      url: `${baseUrl}/blog/${params.slug}`,
+      url: `${baseUrl}/blog/${slug}`,
       images: [{ url: ogImage }],
     },
     twitter: {
@@ -57,9 +59,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-// The actual page component (note: it returns JSX, not Metadata!)
-export default function BlogPost({ params }: Props) {
-  const post = getBlogPosts().find((post) => post.slug === params.slug)
+// The actual page component
+// UPDATE 3: Make the component async
+export default async function BlogPost({ params }: Props) {
+  // UPDATE 4: Await the params here too
+  const { slug } = await params
+  const post = getBlogPosts().find((post) => post.slug === slug)
 
   if (!post) {
     notFound()
