@@ -36,7 +36,8 @@ export const metadata: Metadata = {
   },
 }
 
-const cx = (...classes) => classes.filter(Boolean).join(' ')
+// FIX: Added ': any[]' type definition
+const cx = (...classes: any[]) => classes.filter(Boolean).join(' ')
 
 export default function RootLayout({
   children,
