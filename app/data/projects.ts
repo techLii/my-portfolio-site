@@ -13,4 +13,10 @@ export const projects: Project[] = [
         img: "/images/tft-logo.png",
         desc: "A nonprofit tackling root causes of poverty and trauma to help communities in Kenya thrive.",
     },
+    {
+        name: "TrainersHub",
+        link: "https://trainershub.online/",
+        img: "/images/trainershub-logo.png",
+        desc: "Technical Trainers Community Website",
+    },
 ];
