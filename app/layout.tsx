@@ -12,14 +12,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: 'Eliakim Nyawinda | Technical Trainer',
-    template: 'ELiakim Nyawinda | Technical Trainer Kenya | Tech Consultant in Eldoret, Kenya',
+    template: 'ELiakim Nyawinda | Technical Trainer Kenya | Tech Consultant in Kenya',
   },
   description: 'Eliakim Nyawinda Portfolio Website.',
   openGraph: {
-    title: 'Eliakim Nyawinda - Portfolio Site',
-    description: 'Technical Trainer Kenya | Tech Consultant.',
+    title: 'Eliakim Nyawinda - Tech Consultant.',
+    description: '',
     url: baseUrl,
-    siteName: 'Eliakim Nyawinda - Portfolio Website',
+    siteName: 'Eliakim Nyawinda - Tech Constultant',
     locale: 'en_US',
     type: 'website',
   },
