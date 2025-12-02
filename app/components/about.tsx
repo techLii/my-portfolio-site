@@ -14,7 +14,7 @@ export function About() {
                     sizes="100vw"
                 />
                 <h1 className="text-2xl font-semibold tracking-tighter">
-                    Technical Trainer | Web Dev
+                    Software, Information Technology and Cyber Security Specialist
                 </h1>
             </div>
             <p className="mb-4">
