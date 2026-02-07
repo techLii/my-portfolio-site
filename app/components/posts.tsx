@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { formatDate, getBlogPosts } from 'app/lib/blog'
 
 export function BlogPosts() {
@@ -16,11 +15,7 @@ export function BlogPosts() {
           return 1
         })
         .map((post) => (
-          <Link
-            key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
-            href={`/blog/${post.slug}`}
-          >
+          <div key={post.slug} className="flex flex-col space-y-2 mb-6">
             <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
               <p className="text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums">
                 {formatDate(post.metadata.publishedAt, false)}
@@ -29,7 +24,12 @@ export function BlogPosts() {
                 {post.metadata.title}
               </p>
             </div>
-          </Link>
+            {post.metadata.summary ? (
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                {post.metadata.summary}
+              </p>
+            ) : null}
+          </div>
         ))}
     </div>
   )
