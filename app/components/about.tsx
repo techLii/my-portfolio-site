@@ -15,13 +15,13 @@ export function About() {
                     </p>
                     <div className="flex gap-4">
                         <Link
-                            href="/mentorship"
+                            href="#mentorship"
                             className="bg-neutral-900 dark:bg-neutral-100 text-neutral-100 dark:text-neutral-900 px-6 py-2.5 rounded-md font-medium hover:opacity-90 transition-opacity"
                         >
                             Join the Mentorship
                         </Link>
                         <Link
-                            href="/about"
+                            href="#about"
                             className="px-6 py-2.5 rounded-md font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                         >
                             Learn Methodology
